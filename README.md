@@ -10,13 +10,13 @@ For a detailed walkthrough, read the full article on [Medium](https://medium.com
 
 **Value at Risk (VaR)** estimates the potential loss of an asset or portfolio over a defined period at a given confidence level. For example, a 1-day VaR of $10m at 99% confidence means there is a 1% chance the portfolio loses more than $10m in one day.
 
-```text
+```math
 Pr(x ≤ VaR_c(X)) = 1 - c
 ```
 
 **Expected Shortfall (ES)** quantifies the expected loss given that the loss exceeds the VaR threshold — it captures the severity of losses in the tail of the distribution.
 
-```text
+```math
 ES_c(X) = E[X | X ≤ VaR_c(X)]
 ```
 
@@ -57,7 +57,7 @@ The Parametric Method assumes that portfolio returns are normally distributed an
 
 The **variance-covariance matrix** Σ is constructed from historical returns, and the **portfolio variance** and **mean return** are computed as:
 
-```text
+```math
 σ_p² = w Σ wᵀ
 μ_p  = w μ
 ```
@@ -66,7 +66,7 @@ where `w` is the vector of portfolio weights and `μ` is the vector of individua
 
 Under the normal distribution assumption, VaR and ES are:
 
-```text
+```math
 VaR_c = μ_p + Φ⁻¹(c) · σ_p
 ES_c  = μ_p + [φ(Φ⁻¹(c)) / (1 - c)] · σ_p
 ```
@@ -85,13 +85,13 @@ For a portfolio with multiple assets, a **copula** is used to model the joint di
 
 Cholesky Decomposition factorises the covariance matrix into lower and upper triangular matrices:
 
-```text
+```math
 Σ = L Lᵀ
 ```
 
 This decomposition is used to generate correlated random variables from independent ones. For example, with two assets:
 
-```text
+```math
 x₁ = σ₁ z₁
 x₂ = ρ₁₂ σ₂ z₁ + σ₂ √(1 - ρ₁₂²) z₂
 ```
@@ -106,7 +106,7 @@ A copula is a joint distribution function that links the marginal distributions 
 
 The Gaussian Copula uses a multivariate normal distribution to model the dependence between assets:
 
-```text
+```math
 C(u₁, u₂, ..., uₙ) = Φₙ(Φ⁻¹(u₁), Φ⁻¹(u₂), ..., Φ⁻¹(uₙ); Σ)
 ```
 
@@ -130,7 +130,7 @@ Correlated normal variables are converted to Student's t variables via the proba
 
 During extreme market stress, correlations between positions tend to increase — a phenomenon known as **tail dependence**. The Gaussian Copula does not account for this. The t-Copula addresses tail dependence by using a multivariate Student's t distribution at the portfolio level:
 
-```text
+```math
 C(u₁, u₂, ..., uₙ) = Tᵥ(tᵥ⁻¹(u₁), tᵥ⁻¹(u₂), ..., tᵥ⁻¹(uₙ); Σ)
 ```
 
